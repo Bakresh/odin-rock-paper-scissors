@@ -15,44 +15,48 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === "rock") {
         if (computerSelection === "paper") {
-            return result = "You lose! Paper beats rock.";
-            computerScore++;
+            playerStatus = "loss";
+            result = "You lose! Paper beats rock.";
+            return [playerStatus, result];
         } else if (computerSelection === "scissors") {
-            return result = "You win! Rock beats scissors";
-            playerScore++;
+            playerStatus = "win";
+            result = "You win! Rock beats scissors";
+            return [playerStatus, result];
         } else {
-            return result = "Tie! Rocks make friends!";
-            playerScore++;
-            computerScore++;
+            playerStatus = "tie";
+            result = "Tie! Rocks make friends!";
+            return [playerStatus, result];
         }
     } else if (playerSelection === "paper") {
         if (computerSelection === "rock") {
-            return result = "You win! Paper beats rock.";
-            playerScore++;
+            playerStatus = "win";
+            result = "You win! Paper beats rock.";
+            return [playerStatus, result];
         } else if (computerSelection === "scissors") {
-            return result = "You lose! Scissors beat paper.";
-            computerScore++;
+            playerStatus = "loss";
+            result = "You lose! Scissors beat paper.";
+            return [playerStatus, result];
         } else {
-            return result = "Tie! Papers make friends!";
-            playerScore++;
-            computerScore++;
+            playerStatus = "tie";
+            result = "Tie! Papers make friends!";
+            return [playerStatus, result];
         }
     } else if (playerSelection === "scissors") {
         if (computerSelection === "rock") {
-            return result = "You lose! Rock beats scissors.";
-            computerScore++;
+            playerStatus = "loss";
+            result = "You lose! Rock beats scissors.";
+            return [playerStatus, result];
         } else if (computerSelection === "paper") {
-            return result = "You win! Scissors beat paper.";
-            playerScore++;
+            playerStatus = "win";
+            result = "You win! Scissors beat paper.";
+            return [playerStatus, result];
         } else {
-            return result = "Tie! Scissors make friends!";
-            playerScore++;
-            computerScore++;
+            playerStatus = "tie";
+            result = "Tie! Scissors make friends!";
+            return [playerStatus, result];
         }
     } else {
         return result = "What kind of move is that?!? Invalid! INVALID!!! Game's over, you fool!";
-        playerScore = 0;
-        computerScore = 1000000000;
     }
 }
 
@@ -64,10 +68,17 @@ function game() {
         let computerSelection = getComputerChoice();
         if (playerSelection === "rock" || playerSelection === "paper" || playerSelection === "scissors") {
             playRound(playerSelection, computerSelection);
+            if (playerStatus === "win") {
+                playerScore++;
+            } else if (playerStatus === "loss") {
+                computerScore++;
+            }
             console.log(result);
             console.log(`Player Score: ${playerScore}, Computer Score: ${computerScore}.`);
         } else {
             playRound(playerSelection, computerSelection);
+            playerScore = 0;
+            computerScore = 1000000000;
             console.log(result);
             console.log(`Player Score: ${playerScore}, Computer Score: ${computerScore}.`);
             break;
