@@ -90,9 +90,9 @@ function game() {
         }
     }
     if (playerScore < computerScore) {
-        console.log("Dang! Computer recks you!");
+        console.log("Dang! You got rekt!");
     } else if (playerScore > computerScore) {
-        console.log("Whoa! You reck computer!");
+        console.log("Whoa! Computer got rekt!");
     } else if (playerScore == -1 && computerScore == -1) {
         console.log("Reload the page if you want to prove that you're not a wimp.");
     } else {
