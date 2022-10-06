@@ -55,8 +55,10 @@ function playRound(playerSelection, computerSelection) {
             result = "Tie! Scissors make friends!";
             return [playerStatus, result];
         }
+    } else if (playerSelection === "exit") {
+        return result = "Game terminated.....WIMP!";
     } else {
-        return result = "What kind of move is that?!? Invalid! INVALID!!! Game's over, you fool!";
+        return result = "Invalid move. Please try again.";
     }
 }
 
@@ -64,7 +66,7 @@ function game() {
     let playerScore = 0;
     let computerScore = 0;
     for (let i = 0; i < 5; i++) {
-        let playerSelection = prompt("Make your move.").toLowerCase();
+        let playerSelection = prompt("Please enter 'Rock', 'Paper', or 'Scissors'. Enter 'exit' to end the game.").toLowerCase();
         let computerSelection = getComputerChoice();
         if (playerSelection === "rock" || playerSelection === "paper" || playerSelection === "scissors") {
             playRound(playerSelection, computerSelection);
@@ -75,19 +77,24 @@ function game() {
             }
             console.log(result);
             console.log(`Player Score: ${playerScore}, Computer Score: ${computerScore}.`);
+        } else if (playerSelection === "exit") {
+            playRound(playerSelection, computerSelection);
+            playerScore = -1;
+            computerScore = -1;
+            console.log(result);
+            break;
         } else {
             playRound(playerSelection, computerSelection);
-            playerScore = 0;
-            computerScore = 1000000000;
             console.log(result);
-            console.log(`Player Score: ${playerScore}, Computer Score: ${computerScore}.`);
-            break;
+            i--;
         }
     }
     if (playerScore < computerScore) {
         console.log("Dang! Computer recks you!");
     } else if (playerScore > computerScore) {
         console.log("Whoa! You reck computer!");
+    } else if (playerScore == -1 && computerScore == -1) {
+        console.log("Reload the page if you want to prove that you're not a wimp.");
     } else {
         console.log("Draw!");
     }
