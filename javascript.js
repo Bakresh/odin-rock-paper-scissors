@@ -18,21 +18,9 @@ player.appendChild(playerPoint);
 computer.appendChild(computerPoint);
 
 
-rock.addEventListener('click', () => {
-    const playerSelection = "rock";
-    playRound(playerSelection);
-    checkResult();
-});
-paper.addEventListener('click', () => {
-    const playerSelection = "paper";
-    playRound(playerSelection);
-    checkResult();
-});
-scissors.addEventListener('click', () => {
-    const playerSelection = "scissors";
-    playRound(playerSelection);
-    checkResult();
-});
+rock.addEventListener('click', rockCheck);
+paper.addEventListener('click', paperCheck);
+scissors.addEventListener('click', scissorsCheck);
 
 function getComputerChoice() {
     const computerRandomChoice = Math.floor(Math.random() * 3);
@@ -80,22 +68,28 @@ function playRound(playerSelection) {
     }
 }
 
+function rockCheck() {
+    const playerSelection = "rock";
+    playRound(playerSelection);
+    checkResult();
+}
+
+function paperCheck() {
+    const playerSelection = "paper";
+    playRound(playerSelection);
+    checkResult();
+}
+
+function scissorsCheck() {
+    const playerSelection = "scissors";
+    playRound(playerSelection);
+    checkResult();
+}
+
 function endGame() {
-    rock.removeEventListener('click', () => {
-        const playerSelection = "rock";
-        playRound(playerSelection);
-        checkResult();
-    });
-    paper.removeEventListener('click', () => {
-        const playerSelection = "paper";
-        playRound(playerSelection);
-        checkResult();
-    });
-    scissors.removeEventListener('click', () => {
-        const playerSelection = "scissors";
-        playRound(playerSelection);
-        checkResult();
-    });
+    rock.removeEventListener('click', rockCheck);
+    paper.removeEventListener('click', paperCheck);
+    scissors.removeEventListener('click', scissorsCheck);
 }
 
 function checkResult() {
