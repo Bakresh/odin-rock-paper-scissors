@@ -11,3 +11,23 @@ html {
     border: 5px solid grey;
     border-radius: 15px;
 }
+
+.move:hover {
+    cursor: pointer;
+}
+
+.scores {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1em;
+}
+
+.player-score,
+.computer-score {
+    display: flex;
+    justify-content: space-between;
+}
+
+.identity {
+    padding-right: 10px;
+}
