@@ -2,6 +2,7 @@ let computerChoice;
 let playerChoice;
 let playerScore = 0;
 let computerScore = 0;
+const body = document.querySelector("body");
 const rock = document.querySelector(".rock");
 const paper = document.querySelector(".paper");
 const scissors = document.querySelector(".scissors");
@@ -20,14 +21,17 @@ computer.appendChild(computerPoint);
 rock.addEventListener('click', () => {
     const playerSelection = "rock";
     playRound(playerSelection);
+    checkResult();
 });
 paper.addEventListener('click', () => {
     const playerSelection = "paper";
     playRound(playerSelection);
+    checkResult();
 });
 scissors.addEventListener('click', () => {
     const playerSelection = "scissors";
     playRound(playerSelection);
+    checkResult();
 });
 
 function getComputerChoice() {
@@ -80,13 +84,32 @@ function endGame() {
     rock.removeEventListener('click', () => {
         const playerSelection = "rock";
         playRound(playerSelection);
+        checkResult();
     });
     paper.removeEventListener('click', () => {
         const playerSelection = "paper";
         playRound(playerSelection);
+        checkResult();
     });
     scissors.removeEventListener('click', () => {
         const playerSelection = "scissors";
         playRound(playerSelection);
+        checkResult();
     });
+}
+
+function checkResult() {
+    if (playerScore === 5) {
+        const win = document.createElement("p");
+        win.classList.add("result");
+        win.textContent = "Congratulations! You beat computer! Reload this page to try again.";
+        body.appendChild(win);
+        endGame();
+    } else if (computerScore === 5) {
+        const loss = document.createElement("p");
+        loss.classList.add("result");
+        loss.textContent = "Oh, no! You lost against computer. Reload this page to try again.";
+        body.appendChild(loss);
+        endGame();
+    }
 }
