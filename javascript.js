@@ -1,10 +1,21 @@
 let computerChoice;
 let playerChoice;
-let playerScore = 0
-let computerScore = 0
+let playerScore = 0;
+let computerScore = 0;
 const rock = document.querySelector(".rock");
 const paper = document.querySelector(".paper");
 const scissors = document.querySelector(".scissors");
+
+const player = document.querySelector(".player-score");
+const computer = document.querySelector(".computer-score");
+
+const playerPoint = document.createElement("div");
+const computerPoint = document.createElement("div");
+playerPoint.textContent = playerScore;
+computerPoint.textContent = computerScore;
+player.appendChild(playerPoint);
+computer.appendChild(computerPoint);
+
 
 rock.addEventListener('click', () => {
     const playerSelection = "rock";
@@ -34,49 +45,48 @@ function playRound(playerSelection) {
     const computerSelection = getComputerChoice();
     if (playerSelection === "rock") {
         if (computerSelection === "paper") {
-            playerStatus = "loss";
-            result = "You lose! Paper beats rock.";
-            return [playerStatus, result];
+            computerScore++;
+            computerPoint.textContent = computerScore;
+            return computerScore;
         } else if (computerSelection === "scissors") {
-            playerStatus = "win";
-            result = "You win! Rock beats scissors";
-            return [playerStatus, result];
-        } else {
-            playerStatus = "tie";
-            result = "Tie! Rocks make friends!";
-            return [playerStatus, result];
+            playerScore++;
+            playerPoint.textContent = playerScore;
+            return playerScore;
         }
     } else if (playerSelection === "paper") {
         if (computerSelection === "rock") {
-            playerStatus = "win";
-            result = "You win! Paper beats rock.";
-            return [playerStatus, result];
+            playerScore++;
+            playerPoint.textContent = playerScore;
+            return playerScore;
         } else if (computerSelection === "scissors") {
-            playerStatus = "loss";
-            result = "You lose! Scissors beat paper.";
-            return [playerStatus, result];
-        } else {
-            playerStatus = "tie";
-            result = "Tie! Papers make friends!";
-            return [playerStatus, result];
+            computerScore++;
+            computerPoint.textContent = computerScore;
+            return computerScore;
         }
     } else if (playerSelection === "scissors") {
         if (computerSelection === "rock") {
-            playerStatus = "loss";
-            result = "You lose! Rock beats scissors.";
-            return [playerStatus, result];
+            computerScore++;
+            computerPoint.textContent = computerScore;
+            return computerScore;
         } else if (computerSelection === "paper") {
-            playerStatus = "win";
-            result = "You win! Scissors beat paper.";
-            return [playerStatus, result];
-        } else {
-            playerStatus = "tie";
-            result = "Tie! Scissors make friends!";
-            return [playerStatus, result];
+            playerScore++;
+            playerPoint.textContent = playerScore;
+            return playerScore;
         }
-    } else if (playerSelection === "exit") {
-        return result = "Game terminated.....WIMP!";
-    } else {
-        return result = "Invalid move. Please try again.";
     }
+}
+
+function endGame() {
+    rock.removeEventListener('click', () => {
+        const playerSelection = "rock";
+        playRound(playerSelection);
+    });
+    paper.removeEventListener('click', () => {
+        const playerSelection = "paper";
+        playRound(playerSelection);
+    });
+    scissors.removeEventListener('click', () => {
+        const playerSelection = "scissors";
+        playRound(playerSelection);
+    });
 }
