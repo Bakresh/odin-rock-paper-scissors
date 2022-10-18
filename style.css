@@ -1,0 +1,13 @@
+html {
+    text-align: center;
+}
+
+.moves {
+    display: flex;
+    justify-content: space-around;
+}
+
+.move {
+    border: 5px solid grey;
+    border-radius: 15px;
+}
