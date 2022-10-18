@@ -1,5 +1,23 @@
 let computerChoice;
 let playerChoice;
+let playerScore = 0
+let computerScore = 0
+const rock = document.querySelector(".rock");
+const paper = document.querySelector(".paper");
+const scissors = document.querySelector(".scissors");
+
+rock.addEventListener('click', () => {
+    const playerSelection = "rock";
+    playRound(playerSelection);
+});
+paper.addEventListener('click', () => {
+    const playerSelection = "paper";
+    playRound(playerSelection);
+});
+scissors.addEventListener('click', () => {
+    const playerSelection = "scissors";
+    playRound(playerSelection);
+});
 
 function getComputerChoice() {
     const computerRandomChoice = Math.floor(Math.random() * 3);
@@ -12,7 +30,8 @@ function getComputerChoice() {
     }
 }
 
-function playRound(playerSelection, computerSelection) {
+function playRound(playerSelection) {
+    const computerSelection = getComputerChoice();
     if (playerSelection === "rock") {
         if (computerSelection === "paper") {
             playerStatus = "loss";
@@ -61,4 +80,3 @@ function playRound(playerSelection, computerSelection) {
         return result = "Invalid move. Please try again.";
     }
 }
-
